@@ -1,22 +1,36 @@
 import { Component, OnInit } from '@angular/core';
 import { CorkboardService } from '../services/corkboard.service';
-import { Corkboard } from '../models/corkboard.model';
+import { Note } from '../models/note.model';
+import { CommonModule, formatNumber } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-corkboard',
-  imports: [],
   templateUrl: './corkboard.html',
-  styleUrl: './corkboard.css'
+  styleUrl: './corkboard.css',
+  imports: [CommonModule, FormsModule]
 })
 export class CorkboardComponent implements OnInit {
-  notes: Corkboard[] = [];
+  notes: Note[] = [];
   newNoteTitle: string = '';
   newNoteBody: string = '';
 
   constructor(private corkboardService: CorkboardService){}
   
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    this.loadNotes();
+  }
+
+  loadNotes(): void{
+    this.corkboardService.getNotes().subscribe({
+      next: (data: Note[]) => {
+        this.notes = data;
+        console.log('Notes loaded: ', this.notes); //DEBUG STATEMENT
+      },
+      error: (error) => {
+        console.error('Error loading notes: ', error)
+      }
+    })
   }
 
   addNote(): void{

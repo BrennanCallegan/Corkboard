@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { Corkboard } from "../models/corkboard.model";
+import { Note } from "../models/note.model";
 
 @Injectable({
     providedIn: 'root'
@@ -11,16 +11,16 @@ export class CorkboardService {
 
     constructor(private http: HttpClient){}
 
-    createNote(note: {title: string; body: string}): Observable<Corkboard>{
-        return this.http.post<Corkboard>(this.apiUrl, note);
+    createNote(note: {title: string; body: string}): Observable<Note>{
+        return this.http.post<Note>(this.apiUrl, note);
     }
     
-    getNotes(): Observable<Corkboard[]>{
-        return this.http.get<Corkboard[]>(this.apiUrl);
+    getNotes(): Observable<Note[]>{
+        return this.http.get<Note[]>(this.apiUrl);
     }
 
-    updateNote(id: number, note: {title: string; body: string}): Observable<Corkboard> {
-        return this.http.put<Corkboard>(`${this.apiUrl}/${id}`, note);
+    updateNote(id: number, note: {title: string; body: string}): Observable<Note> {
+        return this.http.put<Note>(`${this.apiUrl}/${id}`, note);
     }
 
     deleteNote(id: number): Observable<void> {

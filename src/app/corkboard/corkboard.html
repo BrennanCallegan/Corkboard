@@ -1,1 +1,29 @@
-<p>corkboard works!</p>
+<div class="container">
+    <div class="add-notes-section">
+        <input
+        type = "text"
+        [(ngModel)]="newNoteTitle"
+        placeholder="Title"
+        class="note-input"
+        />
+        <textarea
+        [(ngModel)]="newNoteBody"
+        placeholder="Body"
+        class="note-textarea"
+        ></textarea>
+        <button (click)="addNote()" class="add-button">Add Corkboard</button>
+    </div>
+
+    <ul class="corkboards-list">
+    <li *ngFor="let item of notes" class="corkboard-item">
+      <div class="corkboard-content">
+        <h3>{{ item.title }}</h3>
+        <p>{{ item.body }}</p>
+      </div>
+      <div class="corkboard-actions">
+        <button (click)="deleteNote(item.id)" class="delete-button">Delete</button>
+      </div>
+    </li>
+    <li *ngIf="notes.length === 0" class="no-corkboards">No corkboards yet. Add one!</li>
+  </ul>
+</div>
