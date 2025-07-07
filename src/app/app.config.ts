@@ -2,7 +2,6 @@ import { ApplicationConfig, importProvidersFrom, provideBrowserGlobalErrorListen
 import { provideRouter } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http';
 import { routes } from './app.routes';
-import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
 export const appConfig: ApplicationConfig = {
@@ -10,7 +9,7 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideHttpClient(),
-    provideRouter(routes), provideClientHydration(withEventReplay()),
+    provideRouter(routes),
     importProvidersFrom(FormsModule)
   ]
 };
