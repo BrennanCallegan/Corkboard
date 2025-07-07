@@ -14,6 +14,7 @@ export class CorkboardComponent implements OnInit {
   notes: Note[] = [];
   newNoteTitle: string = '';
   newNoteBody: string = '';
+  showAddNoteSection: boolean = false;
 
   constructor(private corkboardService: CorkboardService){}
   

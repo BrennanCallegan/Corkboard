@@ -1,5 +1,6 @@
 <div class="container">
-    <div class="add-notes-section">
+  <button (click)="showAddNoteSection = !showAddNoteSection">New Note</button>
+    <div *ngIf="showAddNoteSection" class="add-notes-section">
         <input
         type = "text"
         [(ngModel)]="newNoteTitle"
