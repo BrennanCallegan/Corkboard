@@ -1,0 +1,183 @@
+.corkboard-item-wrapper {
+    position: absolute;
+    cursor: grab;
+    z-index: 1;
+    font-family: system-ui;
+}
+
+.corkboard-visual {
+    background-color: #fffacd;
+    padding: 15px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    transform: rotate(-2deg);
+    transition: transform 0.1s ease-in-out;
+    width: 250px;
+    height: 250px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+}
+
+.corkboard-content-wrapper {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    padding-bottom: 5px;
+}
+
+/* Styles for display mode (not in edit) */
+.corkboard-content {
+    flex-grow: 1;
+}
+
+.corkboard-content h3 {
+    margin-top: 0;
+    margin-bottom: 5px;
+    font-family: system-ui;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    line-height: 1.2;
+}
+
+.corkboard-content p {
+    margin-top: 0;
+    font-family: system-ui;
+    font-size: 0.9em;
+    color: #555;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    line-height: 1.4;
+}
+
+/* Styles for edit mode */
+.corkboard-edit {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.note-edit-title {
+    width: 100%;
+    padding: 0;
+    margin-bottom: 5px;
+    border: none;
+    background: transparent;
+    font-weight: bold;
+    font-size: 1.2em;
+    font-family: system-ui;
+    color: #333;
+    resize: none;
+    outline: none;
+    box-shadow: none;
+    line-height: 1.2;
+}
+
+.note-edit-body {
+    width: 100%;
+    flex-grow: 1;
+    padding: 0;
+    border: none;
+    background: transparent;
+    font-size: 0.9em;
+    font-family: system-ui;
+    color: #555;
+    resize: none;
+    outline: none;
+    box-shadow: none;
+    line-height: 1.4;
+}
+
+.note-edit-title:focus,
+.note-edit-body:focus {
+    box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1);
+}
+
+/* Style for when a note is actively being dragged */
+.corkboard-item-wrapper.cdk-drag-dragging {
+    z-index: 1000;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+.note-placeholder {
+    opacity: 0.4;
+    background-color: #eee;
+    border: dashed 3px #999;
+    width: 200px;
+    height: 150px;
+    box-sizing: border-box;
+}
+
+.cdk-drag-placeholder {
+    opacity: 1;
+}
+
+.delete-button-on-note {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8em;
+    cursor: pointer;
+    z-index: 2;
+    opacity: 0.7;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.delete-button-on-note:hover {
+    opacity: 1;
+    background-color: #e60000;
+}
+
+
+/* Other styles */
+.container {
+    padding: 20px;
+    background-color: #323242;
+}
+
+.notes-board {
+    position: relative;
+    width: 100%;
+    height: 850px;
+    min-height: 600px;
+    margin-top: 20px;
+    background-color: #292936;
+    overflow: hidden;
+}
+
+.corkboard-actions {
+    margin-top: 10px;
+}
+
+.add-notes-section {
+    border: 1px dashed #ccc;
+    padding: 20px;
+    margin: 20px 0;
+    background-color: #f9f9f9;
+}
+
+.no-corkboards {
+    text-align: center;
+    padding: 50px;
+    color: #666;
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+}

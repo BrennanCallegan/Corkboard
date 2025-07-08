@@ -4,4 +4,7 @@ export interface Note {
     body: string;
     createdAt?: string;
     updatedAt?: string;
+    positionX?: number;
+    positionY?: number;
+    isEditing?: boolean;
 }
