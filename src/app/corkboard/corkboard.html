@@ -1,1 +1,47 @@
-<p>corkboard works!</p>
+<div class="container">
+    <button (click)="addNote()" class="add-button">Add Corkboard</button>
+
+  <div class="notes-board" #notesBoard>
+    <ng-container *ngIf="notes.length > 0; else noCorkboards">
+      <div *ngFor="let item of notes" class="corkboard-item-wrapper"
+           [id]="'note-' + item.id" cdkDrag
+           [cdkDragFreeDragPosition]="{x: item.positionX || 0, y: item.positionY || 0}"
+           [cdkDragBoundary]="notesBoard"
+           (cdkDragEnded)="dragEnded($event, item)"
+           (cdkDragStarted)="dragStarted($event)"> <div class="corkboard-visual">
+          <div class="corkboard-content-wrapper" (click)="editNote(item)">
+            <div class="corkboard-content" *ngIf="!item.isEditing">
+              <h3>{{ item.title }}</h3>
+              <p>{{ item.body }}</p>
+            </div>
+
+            <div class="corkboard-edit" *ngIf="item.isEditing">
+              <input
+                type="text"
+                [(ngModel)]="item.title"
+                class="note-edit-title"
+                (click)="$event.stopPropagation()"
+                (blur)="saveEditedNote(item)"
+                (keyup.enter)="saveEditedNote(item)"
+              />
+              <textarea
+                [(ngModel)]="item.body"
+                class="note-edit-body"
+                (click)="$event.stopPropagation()"
+                (blur)="saveEditedNote(item)"
+                (keyup.enter)="saveEditedNote(item)"
+              ></textarea>
+            </div>
+          </div>
+
+          <button (click)="deleteNote(item.id); $event.stopPropagation()" class="delete-button-on-note">X</button>
+        </div>
+
+        <div *cdkDragPlaceholder class="note-placeholder"></div>
+      </div>
+    </ng-container>
+    <ng-template #noCorkboards>
+      <div class="no-corkboards">No corkboards yet. Add one!</div>
+    </ng-template>
+  </div>
+</div>
